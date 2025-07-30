@@ -1,0 +1,136 @@
+import { Assignment, Course } from "@/types/types";
+
+export const assignments: Assignment[] = [
+    {
+      id: 1,
+      title: "Calculus Fundamentals - Midterm Exam",
+      course: "Advanced Mathematics",
+      type: "exam",
+      dueDate: "2024-01-15",
+      status: "pending",
+      points: 100,
+      duration: "45 minutes",
+      description:
+        "Comprehensive exam covering derivatives, limits, and applications of calculus.",
+      questions: 8,
+      attempts: 0,
+      maxAttempts: 1,
+    },
+    {
+      id: 2,
+      title: "Algorithm Analysis Quiz",
+      course: "Computer Science Fundamentals",
+      type: "quiz",
+      dueDate: "2024-01-12",
+      status: "completed",
+      points: 25,
+      duration: "20 minutes",
+      description:
+        "Quick assessment on Big O notation and algorithm complexity.",
+      questions: 10,
+      attempts: 1,
+      maxAttempts: 2,
+      score: 88,
+    },
+    {
+      id: 3,
+      title: "Derivative Applications Assignment",
+      course: "Advanced Mathematics",
+      type: "assignment",
+      dueDate: "2024-01-20",
+      status: "pending",
+      points: 50,
+      description:
+        "Solve real-world problems using derivatives including optimization and related rates.",
+      submissionType: "file",
+    },
+    {
+      id: 4,
+      title: "Wave-Particle Duality Quiz",
+      course: "Physics: From Classical to Quantum",
+      type: "quiz",
+      dueDate: "2024-01-18",
+      status: "pending",
+      points: 30,
+      duration: "25 minutes",
+      description: "Test your understanding of quantum mechanics fundamentals.",
+      questions: 12,
+      attempts: 0,
+      maxAttempts: 2,
+    },
+    {
+      id: 5,
+      title: "Creative Writing Portfolio",
+      course: "Creative Writing Workshop",
+      type: "assignment",
+      dueDate: "2024-01-25",
+      status: "in-progress",
+      points: 75,
+      description:
+        "Submit a portfolio of your creative writing pieces including poetry and short stories.",
+      submissionType: "text",
+    },
+    {
+      id: 6,
+      title: "Data Structures Implementation",
+      course: "Computer Science Fundamentals",
+      type: "assignment",
+      dueDate: "2024-01-22",
+      status: "pending",
+      points: 60,
+      description:
+        "Implement stack, queue, and binary tree data structures in your preferred language.",
+      submissionType: "code",
+    },
+  ];
+
+  export const courses: Course[] = [
+    {
+      id: 1,
+      title: "Advanced Mathematics",
+      instructor: "Dr. Sarah Chen",
+      duration: "12 weeks",
+      students: 234,
+      rating: 4.8,
+      progress: 78,
+      thumbnail: "/math.png",
+      description:
+        "Master calculus, linear algebra, and advanced mathematical concepts.",
+    },
+    {
+      id: 2,
+      title: "Computer Science Fundamentals",
+      instructor: "Prof. Michael Rodriguez",
+      duration: "16 weeks",
+      students: 189,
+      rating: 4.9,
+      progress: 45,
+      thumbnail: "/computer.png",
+      description:
+        "Learn programming, algorithms, and data structures from the ground up.",
+    },
+    {
+      id: 3,
+      title: "Physics: From Classical to Quantum",
+      instructor: "Dr. Emily Watson",
+      duration: "14 weeks",
+      students: 156,
+      rating: 4.7,
+      progress: 92,
+      thumbnail: "/physic.png",
+      description:
+        "Explore the fundamental laws of physics and quantum mechanics.",
+    },
+    {
+      id: 4,
+      title: "Creative Writing Workshop",
+      instructor: "Prof. James Thompson",
+      duration: "8 weeks",
+      students: 78,
+      rating: 4.6,
+      progress: 23,
+      thumbnail: "/creative.png",
+      description:
+        "Develop your creative writing skills through guided practice.",
+    },
+  ];
