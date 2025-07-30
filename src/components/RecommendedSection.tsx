@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Play, BookOpen, Brain } from "lucide-react";
 import gsap from "gsap";
+import { CardContainer } from "./3DCard";
 
 const RecommendedSection: React.FC = () => {
   const recommendedRef = useRef();
@@ -58,8 +59,8 @@ const RecommendedSection: React.FC = () => {
       </h2>
       <div className="grid gap-4">
         {recommendations.map((item) => (
-          <div
-            key={item.id}
+          <CardContainer key={item.id}>
+            <div
             className="group recommend-card cursor-pointer bg-theme-bg rounded-xl p-4 border border-theme-border hover:shadow-lg transition-all duration-200"
           >
             <div className="flex items-center space-x-4">
@@ -84,6 +85,7 @@ const RecommendedSection: React.FC = () => {
               </div>
             </div>
           </div>
+          </CardContainer>
         ))}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Assignment, Course } from "@/types/types";
+import { Assignment, Conversation, Course, Message } from "@/types/types";
 
 export const assignments: Assignment[] = [
     {
@@ -132,5 +132,99 @@ export const assignments: Assignment[] = [
       thumbnail: "/creative.png",
       description:
         "Develop your creative writing skills through guided practice.",
+    },
+  ];
+
+  export const conversations:Conversation[] = [
+    {
+      id: 1,
+      type: "ai_tutor",
+      name: "MathBot AI",
+      course: "Advanced Mathematics",
+      lastMessage:
+        "Great progress on derivatives! I noticed you might benefit from reviewing the chain rule. Would you like me to generate some practice problems?",
+      timestamp: "2 hours ago",
+      unread: 2,
+      avatar: "/placeholder.svg",
+      status: "online",
+    },
+    {
+      id: 2,
+      type: "study_group",
+      name: "CS Study Group",
+      course: "Computer Science Fundamentals",
+      lastMessage:
+        "Alice: The AI tutor just shared some great algorithm visualizations!",
+      timestamp: "4 hours ago",
+      unread: 5,
+      avatar: "/placeholder.svg",
+      status: "active",
+    },
+    {
+      id: 3,
+      type: "ai_tutor",
+      name: "PhysicsAI Assistant",
+      course: "Physics: From Classical to Quantum",
+      lastMessage:
+        "Based on your recent quiz results, I recommend focusing on wave-particle duality concepts. I can break this down into simpler steps.",
+      timestamp: "1 day ago",
+      unread: 0,
+      avatar: "/placeholder.svg",
+      status: "online",
+    },
+    {
+      id: 4,
+      type: "announcement",
+      name: "Course Announcements",
+      course: "Creative Writing Workshop",
+      lastMessage:
+        "WritingAI has generated new personalized prompts based on your writing style analysis",
+      timestamp: "2 days ago",
+      unread: 1,
+      avatar: "/placeholder.svg",
+      status: "system",
+    },
+  ];
+
+  export const messages:Message[] = [
+    {
+      id: 1,
+      sender: "MathBot AI",
+      content:
+        "I've analyzed your recent work on derivatives and noticed excellent progress! Your understanding of basic differentiation rules is solid.",
+      timestamp: "2:30 PM",
+      type: "received",
+    },
+    {
+      id: 2,
+      sender: "MathBot AI",
+      content:
+        "However, I detected some uncertainty when you approached problem 7 involving the chain rule. Would you like me to break down the chain rule concept with step-by-step examples?",
+      timestamp: "2:32 PM",
+      type: "received",
+    },
+    {
+      id: 3,
+      sender: "You",
+      content:
+        "Yes, that would be helpful! I get confused when there are multiple functions nested together.",
+      timestamp: "3:15 PM",
+      type: "sent",
+    },
+    {
+      id: 4,
+      sender: "MathBot AI",
+      content:
+        "Perfect! I understand your challenge. Let me generate some visual examples and practice problems tailored to your current level. I'll start with simple compositions and gradually increase complexity.",
+      timestamp: "3:45 PM",
+      type: "received",
+    },
+    {
+      id: 5,
+      sender: "MathBot AI",
+      content:
+        "I've also noticed you learn better with visual aids based on your interaction patterns. Would you prefer diagrams or step-by-step text explanations for the chain rule?",
+      timestamp: "3:46 PM",
+      type: "received",
     },
   ];

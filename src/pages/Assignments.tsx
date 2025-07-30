@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { gsap } from "gsap";
@@ -10,8 +9,6 @@ import { assignments } from "@/data/mockData";
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-
 
 const Assignments = () => {
   const [filter, setFilter] = useState("all");
@@ -42,7 +39,6 @@ const Assignments = () => {
         stagger: 0.3,
         ease: "elastic.out(1, 0.5)",
       });
-
 
       // Tabs animation
       tl.fromTo(
@@ -106,8 +102,6 @@ const Assignments = () => {
     return () => ctx.revert();
   }, [isLoaded, activeTab]);
 
-  
-
   const filteredAssignments = assignments.filter((assignment) => {
     if (filter === "all") return true;
     return assignment.status === filter;
@@ -117,43 +111,19 @@ const Assignments = () => {
     cardsRef.current[index] = ref;
   };
 
-
-
   return (
     <div ref={containerRef} className="min-h-screen relative overflow-hidden">
-      {/* Animated background elements */}
-      <div
-        ref={backgroundRef}
-        className="absolute inset-0 overflow-hidden pointer-events-none"
-      >
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl" />
-      </div>
 
       {/* Floating geometric shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          ref={(el) => el && (floatingElementsRef.current[0] = el)}
-          className="absolute top-20 left-20 w-4 h-4 border border-white/20 rotate-45"
-        />
-        <div
-          ref={(el) => el && (floatingElementsRef.current[1] = el)}
-          className="absolute top-40 right-32 w-6 h-6 border border-white/10 rounded-full"
-        />
-        <div
-          ref={(el) => el && (floatingElementsRef.current[2] = el)}
-          className="absolute bottom-32 left-1/3 w-3 h-3 bg-white/20 rotate-45"
-        />
-      </div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none"></div>
 
       {/* Header */}
       <div
         // ref={headerRef}
-        className="backdrop-blur-xl bg-white/10 border-b border-white/20 p-4 relative z-20"
+        className=" p-4 relative z-20"
       >
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl font-bold text-black page-title-text">
+        <div className="max-w-7xl text-center flex flex-col items-center justify-center mx-auto">
+          <h1 className="text-4xl mb-6 py-2 font-bold py-2 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent page-title-text">
             Assignments
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full mt-2" />
@@ -168,21 +138,21 @@ const Assignments = () => {
           >
             <TabsTrigger
               value="active"
-              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-purple-500 data-[state=active]:to-blue-500 data-[state=active]:text-white text-black/70 hover:text-[#3b81fb] transition-all duration-300"
+              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-[#2563eb] data-[state=active]:to-[#6366f1] data-[state=active]:text-white text-black/70 hover:text-[#3b81fb] transition-all duration-300"
               onClick={() => setActiveTab("active")}
             >
               Active
             </TabsTrigger>
             <TabsTrigger
               value="completed"
-              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-purple-500 data-[state=active]:to-blue-500 data-[state=active]:text-white text-black/70 hover:text-[#3b81fb] transition-all duration-300"
+              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-[#2563eb] data-[state=active]:to-[#6366f1] data-[state=active]:text-white text-black/70 hover:text-[#3b81fb] transition-all duration-300"
               onClick={() => setActiveTab("completed")}
             >
               Completed
             </TabsTrigger>
             <TabsTrigger
               value="all"
-              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-purple-500 data-[state=active]:to-blue-500 data-[state=active]:text-white text-black/70 hover:text-[#3b81fb] transition-all duration-300"
+              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-[#2563eb] data-[state=active]:to-[#6366f1] data-[state=active]:text-white text-black/70 hover:text-[#3b81fb] transition-all duration-300"
               onClick={() => setActiveTab("all")}
             >
               All

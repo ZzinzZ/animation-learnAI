@@ -26,3 +26,24 @@ export interface Course {
     thumbnail: string,
     description: string,
 }
+
+export interface Conversation {
+    id: number,
+    type: string,
+    name: string,
+    course: string,
+    lastMessage: string,
+    timestamp: string,
+    unread: number,
+    avatar: string,
+    status: string,
+
+}
+
+export interface Message {
+    id: number,
+    sender: string,
+    content: string,
+    timestamp: string,
+    type: string,
+}
