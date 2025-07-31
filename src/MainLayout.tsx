@@ -11,7 +11,7 @@ function MainLayout() {
 
   return (
     <ThemeProvider>
-        <WavyBackground>
+        <WavyBackground >
           <div className="min-h-screen text-theme-text transition-colors duration-200 ">
           <Header
             sidebarCollapsed={sidebarCollapsed}

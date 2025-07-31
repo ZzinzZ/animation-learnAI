@@ -134,25 +134,25 @@ const Assignments = () => {
         <Tabs defaultValue="active" className="space-y-6">
           <TabsList
             ref={tabsRef}
-            className="backdrop-blur-xl bg-white/10 border border-white/20 p-1 rounded-xl"
+            className="backdrop-blur-xl bg-theme-surface border border-white/20 p-1 rounded-xl"
           >
             <TabsTrigger
               value="active"
-              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-[#2563eb] data-[state=active]:to-[#6366f1] data-[state=active]:text-white text-black/70 hover:text-[#3b81fb] transition-all duration-300"
+              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-[#2563eb] data-[state=active]:to-[#6366f1] data-[state=active]:text-white text-theme-text hover:text-[#3b81fb] transition-all duration-300"
               onClick={() => setActiveTab("active")}
             >
               Active
             </TabsTrigger>
             <TabsTrigger
               value="completed"
-              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-[#2563eb] data-[state=active]:to-[#6366f1] data-[state=active]:text-white text-black/70 hover:text-[#3b81fb] transition-all duration-300"
+              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-[#2563eb] data-[state=active]:to-[#6366f1] data-[state=active]:text-white text-theme-text hover:text-[#3b81fb] transition-all duration-300"
               onClick={() => setActiveTab("completed")}
             >
               Completed
             </TabsTrigger>
             <TabsTrigger
               value="all"
-              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-[#2563eb] data-[state=active]:to-[#6366f1] data-[state=active]:text-white text-black/70 hover:text-[#3b81fb] transition-all duration-300"
+              className="data-[state=active]:bg-gradient-to-r rounded-xl data-[state=active]:from-[#2563eb] data-[state=active]:to-[#6366f1] data-[state=active]:text-white text-theme-text hover:text-[#3b81fb] transition-all duration-300"
               onClick={() => setActiveTab("all")}
             >
               All

@@ -74,11 +74,11 @@ const CourseGrid: React.FC = () => {
       </h2>
       <div className="space-y-4">
         {courses.map((course, index) => (
-          <CardContainer className="w-full" key={index}>
+          <CardContainer className="w-full " key={index}>
             <CardBody>
               <div
                 key={course.id}
-                className="bg-theme-bg w-full rounded-xl p-4 border border-theme-border hover:shadow-lg transition-all duration-200 group cursor-pointer"
+                className=" w-full rounded-xl p-4 border bg-theme-surface border-theme-border hover:shadow-lg transition-all duration-200 group cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="font-semibold text-theme-text group-hover:text-theme-primary transition-colors">
@@ -88,7 +88,7 @@ const CourseGrid: React.FC = () => {
                 </div>
 
                 <div className="mb-3">
-                  <div className="flex justify-between text-sm text-theme-muted mb-1">
+                  <div className="flex justify-between text-sm theme-text mb-1">
                     <span>Progress</span>
                     <span>{course.progress}%</span>
                   </div>
@@ -102,18 +102,18 @@ const CourseGrid: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="text-sm text-theme-muted">
+                <div className="text-sm text-theme py-2">
                   Next:{" "}
                   <span className="text-theme-text font-medium">
                     {course.nextLesson}
                   </span>
                 </div>
 
-                <button className="flex justify-center items-center gap-2 w-full button2 mt-3 bg-theme-primary text-white rounded-lg hover:bg-opacity-90 transition-all duration-200 font-medium">
-                  <span className="transition-all ease-in-out duration-200">
+                <button className="continue-button button2 w-full flex justify-center items-center gap-2  py-3 rounded-lg transition-all duration-300 font-medium shadow-lg hover:shadow-xl relative overflow-hidden group/btn">
+                  <span className="transition-all ease-in-out text-theme-text group-hover:text-white duration-3000">
                     Continue
                   </span>
-                  <CirclePlay className="hidden continue-icon" />
+                  <CirclePlay className="w-5 h-5 hidden continue-icon text-white transition-transform duration-300" />
                 </button>
               </div>
             </CardBody>

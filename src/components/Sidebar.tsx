@@ -36,7 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed }) => {
               `group hover:text-[#3b81fb] relative flex items-center space-x-3 px-3 py-2.5 rounded-xl overflow-hidden transition-all duration-300 ease-in-out
      ${
        isActive
-         ? "bg-gradient-to-r from-blue-600 to-indigo-500 text-white shadow-lg"
+         ? "bg-theme-primary text-theme-primary shadow-lg"
          : "text-white/80 hover:text-white hover:bg-white/10"
      }`
             }
@@ -45,13 +45,13 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed }) => {
               <>
                 <item.icon
                   className={`w-5 h-5 flex-shrink-0 transform transition-transform duration-300 ${
-                    isActive ? "text-white" : "text-black/60"
+                    isActive ? "text-white" : "text-theme-text"
                   } ${collapsed ? "mx-auto" : ""}`}
                 />
                 {!collapsed && (
                   <span
                     className={`font-medium truncate transition-all duration-500 ${
-                      isActive ? "text-white" : `text-black/60`
+                      isActive ? "text-white" : `text-theme-text`
                     } ${collapsed ? "opacity-0 w-0" : "opacity-100 w-auto"}`}
                   >
                     {item.name}
@@ -59,7 +59,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed }) => {
                 )}
                 <span
                   className={`absolute left-0 bottom-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full
-                  aria-hidden ${isActive ? "bg-white" : "bg-[#3b81fb]"}`}
+                  aria-hidden ${isActive ? "bg-white" : "bg-theme-primary"}`}
                 />
               </>
             )}

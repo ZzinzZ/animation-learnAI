@@ -202,7 +202,7 @@ const AssignmentCard = ({
         onMouseEnter={() => handleCardHover(cardRef.current!, true)}
         onMouseLeave={() => handleCardHover(cardRef.current!, false)}
       >
-        <Card className="relative overflow-hidden rounded-xl backdrop-blur-xl bg-white/25 border border-white/20 shadow-2xl">
+        <Card className="relative overflow-hidden rounded-xl backdrop-blur-xl bg-theme-surface border border-white/20 shadow-2xl">
           {/* Animated gradient overlay */}
           <div className="card-glow absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20 opacity-0" />
 
@@ -213,15 +213,15 @@ const AssignmentCard = ({
                   <div className="icon-container p-1.5 rounded-lg bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm border border-white/10">
                     {getTypeIcon(assignment.type)}
                   </div>
-                  <CardTitle className="text-lg text-black/70">
+                  <CardTitle className="text-lg text-theme-text">
                     {assignment.title}
                   </CardTitle>
                 </div>
-                <p className="text-sm text-black/60">{assignment.course}</p>
+                <p className="text-sm text-theme-text">{assignment.course}</p>
               </div>
               <Badge
                 variant={getStatusColor(assignment.status)}
-                className="status-badge backdrop-blur-sm bg-white/10 border-white/20 text-black/50"
+                className="status-badge backdrop-blur-sm bg-white/10 border-white/20 text-theme-text"
               >
                 {assignment.status}
               </Badge>
@@ -229,40 +229,40 @@ const AssignmentCard = ({
           </CardHeader>
 
           <CardContent className="space-y-4 relative z-10">
-            <p className="text-sm text-black/70">{assignment.description}</p>
+            <p className="text-sm text-theme-text">{assignment.description}</p>
 
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div className="info-card space-y-1 p-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10">
                 <div className="flex items-center gap-2">
-                  <CalendarDays className="w-3 h-3 text-black/60" />
-                  <p className="font-medium text-black/80">Due Date</p>
+                  <CalendarDays className="w-3 h-3 text-theme-text" />
+                  <p className="font-medium text-theme-text">Due Date</p>
                 </div>
-                <p className="text-black/60">
+                <p className="text-theme-text">
                   {formatDate(assignment.dueDate)}
                 </p>
               </div>
               <div className="info-card space-y-1 p-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10">
                 <div className="flex items-center gap-2">
-                  <AlertCircle className="w-3 h-3 text-black/60" />
-                  <p className="font-medium text-black/80">Points</p>
+                  <AlertCircle className="w-3 h-3 text-theme-text" />
+                  <p className="font-medium text-theme-text">Points</p>
                 </div>
-                <p className="text-black/60">{assignment.points}</p>
+                <p className="text-theme-text">{assignment.points}</p>
               </div>
               {(assignment.type === "exam" || assignment.type === "quiz") && (
                 <>
                   <div className="info-card space-y-1 p-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10">
                     <div className="flex items-center gap-2">
-                      <Clock className="w-3 h-3 text-black/60" />
-                      <p className="font-medium text-black/80">Duration</p>
+                      <Clock className="w-3 h-3 text-theme-text" />
+                      <p className="font-medium text-theme-text">Duration</p>
                     </div>
-                    <p className="text-black/60">{assignment.duration}</p>
+                    <p className="text-theme-text">{assignment.duration}</p>
                   </div>
                   <div className="info-card space-y-1 p-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10">
                     <div className="flex items-center gap-2">
-                      <FileText className="w-3 h-3 text-black/60" />
-                      <p className="font-medium text-black/80">Questions</p>
+                      <FileText className="w-3 h-3 text-theme-text" />
+                      <p className="font-medium text-theme-text">Questions</p>
                     </div>
-                    <p className="text-black/60">{assignment.questions}</p>
+                    <p className="text-theme-text">{assignment.questions}</p>
                   </div>
                 </>
               )}
@@ -287,9 +287,9 @@ const AssignmentCard = ({
                       handleStartTest();
                     }}
                   >
-                    <Play className="w-4 h-4 mr-2" />
-                    Start {assignment.type === "exam" ? "Exam" : "Quiz"}
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <Play className="w-4 h-4 mr-2 text-white "  />
+                    <span className="text-theme-text group-hover:text-white">Start {assignment.type === "exam" ? "Exam" : "Quiz"}</span>
+                    <ArrowRight className="w-4 h-4 ml-2 text-white " />
                   </Button>
                 )}
               {assignment.type === "assignment" &&
@@ -298,8 +298,8 @@ const AssignmentCard = ({
                     className="action-button button2 flex-1 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white border-0 shadow-lg relative overflow-hidden"
                     onClick={(e) => handleButtonClick(e.currentTarget)}
                   >
-                    <Upload className="w-4 h-4 mr-2" />
-                    Submit Assignment
+                    <Upload className="w-4 h-4 mr-2 text-white " />
+                    <span className="text-theme-text group-hover:text-white">Submit Assignment</span>
                   </Button>
                 )}
               {assignment.status === "completed" && (
@@ -308,16 +308,16 @@ const AssignmentCard = ({
                   className="w-full flex justify-center items-center gap-2 button2 bg-theme-primary hover:text-white py-3 rounded-lg hover:bg-opacity-90 transition-all duration-200 font-medium"
                   onClick={(e) => handleButtonClick(e.currentTarget)}
                 >
-                  <Eye className="w-4 h-4 mr-2" />
-                  <span>View Submission</span>
+                  <Eye className="w-4 h-4 mr-2 text-white " />
+                  <span className="text-theme-text group-hover:text-white">View Submission</span>
                 </Button>
               )}
               {assignment.status === "in-progress" && (
                 <button className="w-full flex justify-center items-center gap-2 button2 bg-theme-primary text-white py-3 rounded-lg hover:bg-opacity-90 transition-all duration-200 font-medium">
-                  <span className="transition-all ease-in-out duration-200">
+                  <span className="transition-all ease-in-out duration-200 text-theme-text group-hover:text-white">
                     Continue
                   </span>
-                  <CirclePlay className="hidden continue-icon" />
+                  <CirclePlay className="hidden continue-icon text-white " />
                 </button>
               )}
             </div>
