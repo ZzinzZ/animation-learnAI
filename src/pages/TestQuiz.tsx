@@ -18,6 +18,7 @@ import {
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavigate } from "react-router-dom";
+import { mockHints, test } from "@/data/mockData";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -32,7 +33,7 @@ const TestQuiz = () => {
   const [aiResponse, setAiResponse] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Refs 
+  // Refs
   const containerRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
@@ -48,7 +49,7 @@ const TestQuiz = () => {
     if (typeof window === "undefined") return;
 
     const ctx = gsap.context(() => {
-      // Initial page 
+      // Initial page
       const tl = gsap.timeline();
 
       // Header animation
@@ -60,7 +61,7 @@ const TestQuiz = () => {
         );
       }
 
-      // Progress bar 
+      // Progress bar
       if (progressRef.current) {
         tl.fromTo(
           progressRef.current,
@@ -70,7 +71,7 @@ const TestQuiz = () => {
         );
       }
 
-      // Question card 
+      // Question card
       if (questionCardRef.current) {
         tl.fromTo(
           questionCardRef.current,
@@ -86,7 +87,7 @@ const TestQuiz = () => {
         );
       }
 
-      // Sidebar 
+      // Sidebar
       if (sidebarRef.current) {
         tl.fromTo(
           sidebarRef.current,
@@ -96,7 +97,7 @@ const TestQuiz = () => {
         );
       }
 
-      // Floating elements 
+      // Floating elements
       floatingElementsRef.current.forEach((el, index) => {
         if (el) {
           gsap.to(el, {
@@ -156,7 +157,7 @@ const TestQuiz = () => {
       repeat: 1,
     });
 
-    // Ripple 
+    // Ripple
     const ripple = document.createElement("div");
     ripple.className = "absolute inset-0 bg-white/20 rounded-lg scale-0";
     buttonRef.appendChild(ripple);
@@ -170,82 +171,11 @@ const TestQuiz = () => {
     });
   };
 
-  const handleBackClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleBackClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     navigate(-1);
     handleButtonClick(e.currentTarget);
-  }
-
-  const test = {
-    id: "1",
-    title: "Calculus Fundamentals - Midterm Exam",
-    course: "Advanced Mathematics",
-    duration: 45,
-    totalQuestions: 8,
-    type: "exam",
-    instructions:
-      "Answer all questions. Show your work for partial credit. You may use the AI assistant for hints but not direct answers.",
-    questions: [
-      {
-        id: 1,
-        type: "multiple-choice",
-        question: "What is the derivative of f(x) = 3x² + 2x - 5?",
-        options: ["6x + 2", "6x - 2", "3x + 2", "6x² + 2x"],
-        points: 5,
-      },
-      {
-        id: 2,
-        type: "short-answer",
-        question: "Find the limit: lim(x→2) (x² - 4)/(x - 2)",
-        points: 8,
-      },
-      {
-        id: 3,
-        type: "multiple-choice",
-        question: "Which of the following represents the chain rule?",
-        options: [
-          "d/dx[f(g(x))] = f'(g(x)) · g'(x)",
-          "d/dx[f(g(x))] = f'(x) · g'(x)",
-          "d/dx[f(g(x))] = f(g'(x))",
-          "d/dx[f(g(x))] = f'(g(x)) + g'(x)",
-        ],
-        points: 5,
-      },
-      {
-        id: 4,
-        type: "long-answer",
-        question:
-          "A ball is thrown upward from a height of 6 feet with an initial velocity of 64 ft/s. The height h(t) = -16t² + 64t + 6. Find when the ball reaches its maximum height and what that height is.",
-        points: 12,
-      },
-      {
-        id: 5,
-        type: "multiple-choice",
-        question: "What is the derivative of ln(x)?",
-        options: ["1/x", "x", "ln(x)", "e^x"],
-        points: 5,
-      },
-      {
-        id: 6,
-        type: "short-answer",
-        question:
-          "Find the equation of the tangent line to y = x³ - 2x + 1 at x = 1.",
-        points: 10,
-      },
-      {
-        id: 7,
-        type: "multiple-choice",
-        question: "Which function is NOT differentiable at x = 0?",
-        options: ["f(x) = x²", "f(x) = |x|", "f(x) = x³", "f(x) = sin(x)"],
-        points: 5,
-      },
-      {
-        id: 8,
-        type: "long-answer",
-        question:
-          "Use the definition of the derivative to find f'(x) for f(x) = 2x² + 3x. Show all steps.",
-        points: 15,
-      },
-    ],
   };
 
   const formatTime = (seconds: number) => {
@@ -262,16 +192,6 @@ const TestQuiz = () => {
     if (!hintRequest.trim()) return;
 
     const currentQ = test.questions[currentQuestion];
-    const mockHints: Record<number, string> = {
-      1: "Think about the power rule: d/dx[x^n] = nx^(n-1). Apply this to each term separately.",
-      2: "This looks like an indeterminate form 0/0. Try factoring the numerator. What factors does x² - 4 have?",
-      3: "The chain rule is used when you have a composite function. Remember: derivative of outer function times derivative of inner function.",
-      4: "To find maximum height, you need to find when the velocity is zero. The velocity is the derivative of the height function.",
-      5: "This is a standard derivative you should memorize. The natural logarithm has a special derivative.",
-      6: "For a tangent line, you need the slope at that point (the derivative) and the y-coordinate at that point.",
-      7: "Think about where a function might not be smooth or have a sharp corner. What happens to the derivative at such points?",
-      8: "Use the limit definition: f'(x) = lim(h→0) [f(x+h) - f(x)]/h. Substitute f(x) = 2x² + 3x and expand.",
-    };
 
     setAiResponse(
       mockHints[currentQ.id] ||

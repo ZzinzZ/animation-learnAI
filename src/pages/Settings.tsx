@@ -14,87 +14,12 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Theme, useTheme } from "../contexts/ThemeContext";
 import { User, Bell, Shield, Palette, Camera, BookOpen } from "lucide-react";
+import { themes } from "@/data/themeData";
 
 const Settings = () => {
   const { theme, setTheme, themeColors, setColors } = useTheme();
 
-  const themes = [
-    {
-      id: "default",
-      name: "Default",
-      tailwindColor: "bg-blue-500",
-      colors: 'bg-blue-500',
-      colorHex: {
-        themeBg: "#D9EAFD",
-        themeSurface: "#ffffff",
-        themeBorder: "#e5e7eb",
-        themeText: "#111827",
-        themeMuted: "#6b7280",
-        themePrimary: "#3b82f6",
-        themeHover: "#f3f4f6",
-      },
-    },
-    {
-      id: "dark",
-      name: "Dark",
-      colors: 'bg-gray-800',
-      tailwindColor: "bg-gray-800",
-      colorHex: {
-        themeBg: "#0f172a",
-        themeSurface: "#1e293b",
-        themeBorder: "#334155",
-        themeText: "#f1f5f9",
-        themeMuted: "#94a3b8",
-        themePrimary: "#60a5fa",
-        themeHover: "#334155",
-      },
-    },
-    {
-      id: "ocean",
-      name: "Ocean",
-      tailwindColor: "bg-teal-500",
-      colors: 'bg-teal-500',
-      colorHex: {
-        themeBg: "#e6f3fa",
-        themeSurface: "#ffffff",
-        themeBorder: "#b3d9ea",
-        themeText: "#0c4a6e",
-        themeMuted: "#0369a1",
-        themePrimary: "#0284c7",
-        themeHover: "#f0f9ff",
-      },
-    },
-    {
-      id: "sunset",
-      name: "Sunset",
-      colors: 'bg-orange-500',
-      tailwindColor: "bg-orange-500",
-      colorHex: {
-        themeBg: "#fff3e0",
-        themeSurface: "#ffffff",
-        themeBorder: "#fed7aa",
-        themeText: "#9a3412",
-        themeMuted: "#c2410c",
-        themePrimary: "#ea580c",
-        themeHover: "#fef3c7",
-      },
-    },
-    {
-      id: "forest",
-      name: "Forest",
-      tailwindColor: "bg-green-500",
-      colors: 'bg-green-500' ,
-      colorHex: {
-        themeBg: "#e8f5e9",
-        themeSurface: "#ffffff",
-        themeBorder: "#a5d6a7",
-        themeText: "#1b5e20",
-        themeMuted: "#2e7d32",
-        themePrimary: "#388e3c",
-        themeHover: "#f1f8e9",
-      },
-    },
-  ];
+  
 
   return (
     <div className="min-h-screen bg-theme-bg">
