@@ -33,7 +33,7 @@ const QuickLinks: React.FC = () => {
         {links.map((link, index) => (
           <button
             key={index}
-            className="group p-4 bg-theme-bg rounded-xl border border-theme-border hover:shadow-lg hover:scale-105 transition-all duration-200 text-center"
+            className="group p-4 bg-theme-surface rounded-xl border border-theme-border hover:shadow-lg hover:scale-105 transition-all duration-200 text-center"
           >
             <div
               className={`w-10 h-10 ${link.color} rounded-xl flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform`}

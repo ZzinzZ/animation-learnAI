@@ -59,9 +59,9 @@ const RecommendedSection: React.FC = () => {
       </h2>
       <div className="grid gap-4">
         {recommendations.map((item) => (
-          <CardContainer key={item.id}>
+          <CardContainer key={item.id} className="w-full">
             <div
-            className="group recommend-card cursor-pointer bg-theme-bg rounded-xl p-4 border border-theme-border hover:shadow-lg transition-all duration-200"
+            className="group bg-theme-surface recommend-card w-full cursor-pointer bg-theme-bg rounded-xl p-4 border border-theme-border hover:shadow-lg transition-all duration-200"
           >
             <div className="flex items-center space-x-4">
               <div

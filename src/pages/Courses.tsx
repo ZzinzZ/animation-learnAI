@@ -171,10 +171,6 @@ const Courses = () => {
           ref={(el) => el && (floatingElementsRef.current[2] = el)}
           className="absolute bottom-36 left-1/3 w-4 h-4 bg-white/20 rotate-45"
         />
-        {/* <div
-          ref={(el) => el && (floatingElementsRef.current[3] = el)}
-          className="absolute top-1/3 right-1/4 w-3 h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
-        /> */}
       </div>
 
       <div className="p-6 max-w-7xl mx-auto relative z-10">
@@ -184,7 +180,7 @@ const Courses = () => {
             Your Learning Journey
           </h1>
           <div className="w-32 h-1 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full mx-auto mt-4" />
-          <p className="text-black/50 text-lg">Continue your path to mastery</p>
+          <p className="text-theme-text text-lg">Continue your path to mastery</p>
         </div>
 
         {/* Stats Section */}
@@ -195,7 +191,7 @@ const Courses = () => {
           {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className="backdrop-blur-xl bg-white/20 border border-white/20 rounded-xl p-4 text-center hover:bg-white/15 transition-all duration-300 hover:scale-105"
+              className="backdrop-blur-xl bg-theme-surface border border-white/20 rounded-xl p-4 text-center hover:bg-white/15 transition-all duration-300 hover:scale-105"
             >
               <div
                 className={`w-12 h-12 bg-gradient-to-r ${stat.color} rounded-lg flex items-center justify-center mx-auto mb-3`}

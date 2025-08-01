@@ -101,7 +101,7 @@ const Calendar: React.FC = () => {
       ref={calendarRef}
       className="backdrop-blur-md bg-white/25 rounded-2xl p-6 border border-theme-border"
     >
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center  justify-between mb-4">
         <h2 className="text-xl font-bold text-theme-text section-title-text">
           {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
         </h2>
@@ -139,7 +139,7 @@ const Calendar: React.FC = () => {
         {events.slice(0, 3).map((event, index) => (
           <div
             key={index}
-            className="flex items-center space-x-3 p-2 rounded-xl hover:shadow-sm hover:bg-gray/10 hover:shadow-black/30 transition-colors"
+            className="flex items-center bg-theme-surface space-x-3 p-2 rounded-xl hover:shadow-sm hover:bg-gray/10 hover:shadow-black/30 transition-colors"
           >
             <div
               className={`w-3 h-3 rounded-full ${

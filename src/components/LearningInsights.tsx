@@ -73,7 +73,7 @@ const LearningInsights: React.FC = () => {
         {stats.map((stat, index) => (
           <div key={index} className="flex items-center space-x-3">
             <div
-              className={`p-2 rounded-lg bg-theme-bg border border-theme-border`}
+              className={`p-2 rounded-lg bg-theme-muted border border-theme-border`}
             >
               <stat.icon className={`w-5 h-5 ${stat.color}`} />
             </div>
@@ -111,7 +111,7 @@ const LearningInsights: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-6 p-4 bg-theme-bg rounded-xl border border-theme-border">
+      <div className="mt-6 p-4 bg-theme-surface rounded-xl border border-theme-border">
         <div className="flex items-center space-x-2 mb-2">
           <TrendingUp className="w-4 h-4 text-theme-primary" />
           <span className="text-sm font-medium text-theme-text">Study Tip</span>

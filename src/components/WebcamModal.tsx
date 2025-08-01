@@ -1,6 +1,5 @@
-
-import React, { useState } from 'react';
-import { Camera, Shield, X } from 'lucide-react';
+import React, { useState } from "react";
+import { Camera, Shield, X } from "lucide-react";
 
 interface WebcamModalProps {
   onClose: () => void;
@@ -11,7 +10,7 @@ const WebcamModal: React.FC<WebcamModalProps> = ({ onClose }) => {
 
   const handleConsent = (agree: boolean) => {
     setConsent(agree);
-    localStorage.setItem('webcam-consent', agree.toString());
+    localStorage.setItem("webcam-consent", agree.toString());
     setTimeout(() => {
       onClose();
     }, 1000);
@@ -25,7 +24,9 @@ const WebcamModal: React.FC<WebcamModalProps> = ({ onClose }) => {
             <div className="w-12 h-12 bg-theme-primary/20 rounded-xl flex items-center justify-center">
               <Camera className="w-6 h-6 text-theme-primary" />
             </div>
-            <h2 className="text-xl font-bold text-theme-text">Enhanced Learning Experience</h2>
+            <h2 className="text-xl font-bold text-theme-text">
+              Enhanced Learning Experience
+            </h2>
           </div>
           <button
             onClick={() => handleConsent(false)}
@@ -39,7 +40,8 @@ const WebcamModal: React.FC<WebcamModalProps> = ({ onClose }) => {
           <>
             <div className="mb-6">
               <p className="text-theme-text mb-4">
-                To provide you with a more personalized learning experience, LearnAI can use your camera to:
+                To provide you with a more personalized learning experience,
+                LearnAI can use your camera to:
               </p>
               <ul className="space-y-2 text-sm text-theme-muted">
                 <li className="flex items-center space-x-2">
@@ -60,10 +62,13 @@ const WebcamModal: React.FC<WebcamModalProps> = ({ onClose }) => {
             <div className="bg-theme-bg rounded-xl p-4 mb-6 border border-theme-border">
               <div className="flex items-center space-x-2 mb-2">
                 <Shield className="w-4 h-4 text-green-500" />
-                <span className="text-sm font-medium text-theme-text">Privacy Protection</span>
+                <span className="text-sm font-medium text-theme-text">
+                  Privacy Protection
+                </span>
               </div>
               <p className="text-xs text-theme-muted">
-                Your camera feed is processed locally and never stored or transmitted. You can disable this feature anytime in settings.
+                Your camera feed is processed locally and never stored or
+                transmitted. You can disable this feature anytime in settings.
               </p>
             </div>
 
@@ -89,8 +94,12 @@ const WebcamModal: React.FC<WebcamModalProps> = ({ onClose }) => {
             <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
               <Camera className="w-8 h-8 text-green-500" />
             </div>
-            <h3 className="text-lg font-semibold text-theme-text mb-2">Camera Access Enabled</h3>
-            <p className="text-theme-muted">Your learning experience is now personalized!</p>
+            <h3 className="text-lg font-semibold text-theme-text mb-2">
+              Camera Access Enabled
+            </h3>
+            <p className="text-theme-muted">
+              Your learning experience is now personalized!
+            </p>
           </div>
         )}
 
@@ -99,8 +108,12 @@ const WebcamModal: React.FC<WebcamModalProps> = ({ onClose }) => {
             <div className="w-16 h-16 bg-theme-bg rounded-full flex items-center justify-center mx-auto mb-4 border border-theme-border">
               <Camera className="w-8 h-8 text-theme-muted" />
             </div>
-            <h3 className="text-lg font-semibold text-theme-text mb-2">Camera Access Disabled</h3>
-            <p className="text-theme-muted">You can enable this feature anytime in settings.</p>
+            <h3 className="text-lg font-semibold text-theme-text mb-2">
+              Camera Access Disabled
+            </h3>
+            <p className="text-theme-muted">
+              You can enable this feature anytime in settings.
+            </p>
           </div>
         )}
       </div>

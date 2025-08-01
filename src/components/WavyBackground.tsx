@@ -1,6 +1,8 @@
 "use client";
 
+import { useTheme } from "@/contexts/ThemeContext";
 import { cn } from "@/lib/utils";
+import { log } from "console";
 import React, {
   useEffect,
   useRef,
@@ -29,13 +31,14 @@ export const WavyBackground: React.FC<WavyBackgroundProps> = ({
   colors,
   waveWidth = 100,
   backgroundFill = "#D9EAFD",
-  blur = 15,
+  blur = 10,
   speed = "fast",
   waveOpacity = 0.5,
   ...props
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isSafari, setIsSafari] = useState(false);
+  const { theme, themeColors } = useTheme();
 
   useEffect(() => {
     setIsSafari(
@@ -44,6 +47,7 @@ export const WavyBackground: React.FC<WavyBackgroundProps> = ({
         !navigator.userAgent.includes("Chrome")
     );
   }, []);
+
 
   useEffect(() => {
     const noise = createNoise3D();
@@ -85,8 +89,9 @@ export const WavyBackground: React.FC<WavyBackgroundProps> = ({
       }
     };
 
+    
     const render = () => {
-      ctx.fillStyle = backgroundFill;
+      ctx.fillStyle = themeColors?.themeBg ?? backgroundFill;
       ctx.globalAlpha = waveOpacity;
       ctx.fillRect(0, 0, w, h);
       drawWave(5);
@@ -102,12 +107,11 @@ export const WavyBackground: React.FC<WavyBackgroundProps> = ({
       ctx.filter = `blur(${blur}px)`;
     };
     window.addEventListener("resize", handleResize);
-
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", handleResize);
     };
-  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity]);
+  }, [colors, waveWidth, backgroundFill, theme, blur, speed, waveOpacity]);
 
   return (
     <div
