@@ -127,7 +127,6 @@
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
   }
 
-  /* Smooth transitions for theme changes */
   * {
     transition-property: background-color, border-color, color;
     transition-duration: 0.2s;
