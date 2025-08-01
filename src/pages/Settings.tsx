@@ -100,8 +100,8 @@ const Settings = () => {
     <div className="min-h-screen bg-theme-bg">
       <div className="p-6 max-w-4xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-theme-text mb-2">Settings</h1>
-          <p className="text-theme-muted">Customize your learning experience</p>
+          <h1 className="text-3xl font-bold text-theme-text mb-2 page-title-text">Settings</h1>
+          <p className="text-theme-muted page-title-text">Customize your learning experience</p>
         </div>
 
         <Tabs defaultValue="profile" className="space-y-6">

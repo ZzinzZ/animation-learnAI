@@ -215,10 +215,10 @@ const CourseItem = ({
                 className="continue-button button2 w-full  flex justify-center group  items-center gap-2 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white py-3 rounded-lg transition-all duration-300 font-medium shadow-lg hover:shadow-xl relative overflow-hidden group/btn"
                 onClick={(e) => handleButtonClick(e.currentTarget)}
               >
-                <span className="transition-all text-theme-text group-hover:text-white  ease-in-out duration-3000">
+                <span className="transition-all text-theme-text group-hover:text-theme-text button-content  ease-in-out duration-3000">
                   Continue Learning
                 </span>
-                <CirclePlay className="w-5 h-5 hidden continue-icon text-theme-text group-hover:text-white transition-transform duration-300" />
+                <CirclePlay className="w-5 h-5 button-content hidden continue-icon text-theme-text group-hover:text-white transition-transform duration-300" />
               </button>
             </div>
           </div>

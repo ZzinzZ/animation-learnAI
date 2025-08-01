@@ -1,7 +1,6 @@
-
-import { useState, useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState, useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ArrowLeft,
   Play,
@@ -18,41 +17,47 @@ import {
   Volume2,
   Settings,
   Maximize,
-} from "lucide-react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { useTheme } from "@/contexts/ThemeContext"
+} from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTheme } from "@/contexts/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 const CourseLearning = () => {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentLesson, setCurrentLesson] = useState(0)
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentLesson, setCurrentLesson] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // Refs for GSAP animations
-  const containerRef = useRef<HTMLDivElement>(null)
-  const headerRef = useRef<HTMLDivElement>(null)
-  const videoPlayerRef = useRef<HTMLDivElement>(null)
-  const tabsRef = useRef<HTMLDivElement>(null)
-  const sidebarRef = useRef<HTMLDivElement>(null)
-  const lessonsRef = useRef<HTMLDivElement[]>([])
-  const controlsRef = useRef<HTMLDivElement>(null)
-  const {themeColors} = useTheme();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const videoPlayerRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const lessonsRef = useRef<HTMLDivElement[]>([]);
+  const controlsRef = useRef<HTMLDivElement>(null);
+  const { themeColors } = useTheme();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (typeof window === "undefined") return
+    if (typeof window === "undefined") return;
 
     const ctx = gsap.context(() => {
       // Initial page load animation
-      const tl = gsap.timeline()
+      const tl = gsap.timeline();
 
       // Header animation
       if (headerRef.current) {
-        tl.fromTo(headerRef.current, { y: -80, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "back.out(1.7)" })
+        tl.fromTo(
+          headerRef.current,
+          { y: -80, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1, ease: "back.out(1.7)" }
+        );
       }
 
       // Video player animation
@@ -60,11 +65,19 @@ const CourseLearning = () => {
         tl.fromTo(
           videoPlayerRef.current,
           { scale: 0.9, opacity: 0, rotationY: -10 },
-          { scale: 1, opacity: 1, rotationY: 0, duration: 1.2, ease: "back.out(1.7)" },
-          "-=0.6",
-        )
+          {
+            scale: 1,
+            opacity: 1,
+            rotationY: 0,
+            duration: 1.2,
+            ease: "back.out(1.7)",
+          },
+          "-=0.6"
+        );
       }
-      const elementsToAnimate = [tabsRef.current, sidebarRef.current].filter((el) => el !== null)
+      const elementsToAnimate = [tabsRef.current, sidebarRef.current].filter(
+        (el) => el !== null
+      );
       if (elementsToAnimate.length > 0) {
         tl.fromTo(
           elementsToAnimate,
@@ -77,20 +90,20 @@ const CourseLearning = () => {
             stagger: 0.2,
             ease: "back.out(1.7)",
           },
-          "-=0.4",
-        )
+          "-=0.4"
+        );
       }
 
-      setIsLoaded(true)
-    }, containerRef)
+      setIsLoaded(true);
+    }, containerRef);
 
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
-  // Animate lessons when they change
+  // Animate lessons when change
   useEffect(() => {
     if (isLoaded) {
-      const validLessons = lessonsRef.current.filter((el) => el !== null)
+      const validLessons = lessonsRef.current.filter((el) => el !== null);
       if (validLessons.length > 0) {
         gsap.fromTo(
           validLessons,
@@ -101,34 +114,37 @@ const CourseLearning = () => {
             duration: 0.5,
             stagger: 0.1,
             ease: "power2.out",
-          },
-        )
+          }
+        );
       }
     }
-  }, [isLoaded, currentLesson])
+  }, [isLoaded, currentLesson]);
 
-  const handleCardHover = (cardRef: HTMLDivElement | null, isEntering: boolean) => {
-    if (!cardRef) return
+  const handleCardHover = (
+    cardRef: HTMLDivElement | null,
+    isEntering: boolean
+  ) => {
+    if (!cardRef) return;
 
     gsap.to(cardRef, {
       y: isEntering ? -4 : 0,
       scale: isEntering ? 1.02 : 1,
       duration: 0.3,
       ease: "power2.out",
-    })
+    });
 
-    const glowElement = cardRef.querySelector(".card-glow")
+    const glowElement = cardRef.querySelector(".card-glow");
     if (glowElement) {
       gsap.to(glowElement, {
         opacity: isEntering ? 1 : 0,
         duration: 0.3,
         ease: "power2.out",
-      })
+      });
     }
-  }
+  };
 
   const handleButtonClick = (buttonRef: HTMLButtonElement | null) => {
-    if (!buttonRef) return
+    if (!buttonRef) return;
 
     gsap.to(buttonRef, {
       scale: 0.95,
@@ -136,12 +152,12 @@ const CourseLearning = () => {
       ease: "power2.out",
       yoyo: true,
       repeat: 1,
-    })
+    });
 
     // Ripple effect
-    const ripple = document.createElement("div")
-    ripple.className = "absolute inset-0 bg-white/20 rounded-lg scale-0"
-    buttonRef.appendChild(ripple)
+    const ripple = document.createElement("div");
+    ripple.className = "absolute inset-0 bg-white/20 rounded-lg scale-0";
+    buttonRef.appendChild(ripple);
 
     gsap.to(ripple, {
       scale: 1,
@@ -149,11 +165,16 @@ const CourseLearning = () => {
       duration: 0.6,
       ease: "power2.out",
       onComplete: () => ripple.remove(),
-    })
+    });
+  };
+
+  const handleBackClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    navigate(-1);
+    handleButtonClick(e.currentTarget);
   }
 
   const handleLessonClick = (index: number) => {
-    setCurrentLesson(index)
+    setCurrentLesson(index);
 
     // Animate lesson transition
     if (videoPlayerRef.current) {
@@ -163,11 +184,10 @@ const CourseLearning = () => {
         ease: "power2.out",
         yoyo: true,
         repeat: 1,
-      })
+      });
     }
-  }
+  };
 
-  // Mock course data
   const course = {
     id: "1",
     title: "Advanced Mathematics",
@@ -211,13 +231,13 @@ const CourseLearning = () => {
         type: "video",
       },
     ],
-  }
+  };
 
   const setLessonRef = (el: HTMLDivElement | null, index: number) => {
     if (lessonsRef.current) {
-      lessonsRef.current[index] = el
+      lessonsRef.current[index] = el;
     }
-  }
+  };
 
   return (
     <div ref={containerRef} className="min-h-screen relative">
@@ -225,8 +245,6 @@ const CourseLearning = () => {
       <div
         ref={headerRef}
         className="backdrop-blur-xl bg-theme-surface border-b border-white/20 p-4 relative"
-        onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
-        onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
       >
         <div className="card-glow absolute inset-0 bg-gradient-to-r from-purple-500/20 via-transparent to-blue-500/20 opacity-0" />
         <div className="max-w-6xl mx-auto flex items-center justify-between relative z-10">
@@ -234,19 +252,23 @@ const CourseLearning = () => {
             <Button
               variant="ghost"
               className="flex items-center space-x-2 text-theme-text hover:bg-white/20 backdrop-blur-sm"
-              onClick={(e) => handleButtonClick(e.currentTarget)}
+              onClick={(e) => handleBackClick(e)}
             >
               <ArrowLeft className="w-4 h-4 text-theme-text" />
               <span className="text-theme-text">Back to Courses</span>
             </Button>
             <div>
-              <h1 className="text-xl font-bold text-theme-text">{course.title}</h1>
+              <h1 className="text-xl font-bold text-theme-text">
+                {course.title}
+              </h1>
               <p className="text-sm text-theme-text">{course.instructor}</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
             <div className="text-right">
-              <p className="text-sm font-medium text-theme-text">{course.progress}% Complete</p>
+              <p className="text-sm font-medium text-theme-text">
+                {course.progress}% Complete
+              </p>
               <div className="w-32 bg-white/20 rounded-full h-2 mt-1">
                 <div
                   className="h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full transition-all duration-1000"
@@ -273,14 +295,21 @@ const CourseLearning = () => {
 
               <div className="aspect-video bg-gradient-to-br from-blue-600/80 to-purple-700/80 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-theme-text">
-                    <h3 className="text-2xl font-bold mb-2">{course.lessons[currentLesson].title}</h3>
-                    <p className="text-blue-100">Duration: {course.lessons[currentLesson].duration}</p>
+                  <div className="text-center text-white">
+                    <h3 className="text-2xl font-bold mb-2">
+                      {course.lessons[currentLesson].title}
+                    </h3>
+                    <p className="text-blue-100">
+                      Duration: {course.lessons[currentLesson].duration}
+                    </p>
                   </div>
                 </div>
 
                 {/* Video Controls */}
-                <div ref={controlsRef} className="absolute bottom-0 left-0 right-0 p-4">
+                <div
+                  ref={controlsRef}
+                  className="absolute bottom-0 left-0 right-0 p-4"
+                >
                   <div className="backdrop-blur-md bg-black/30 rounded-xl p-4">
                     <div className="flex items-center justify-between text-theme-text mb-3">
                       <div className="flex items-center space-x-3">
@@ -288,8 +317,8 @@ const CourseLearning = () => {
                           variant="ghost"
                           size="icon"
                           onClick={(e) => {
-                            handleButtonClick(e.currentTarget)
-                            setCurrentLesson(Math.max(0, currentLesson - 1))
+                            handleButtonClick(e.currentTarget);
+                            setCurrentLesson(Math.max(0, currentLesson - 1));
                           }}
                           disabled={currentLesson === 0}
                           className="text-white hover:bg-white/20 disabled:opacity-50"
@@ -300,19 +329,28 @@ const CourseLearning = () => {
                           variant="ghost"
                           size="icon"
                           onClick={(e) => {
-                            handleButtonClick(e.currentTarget)
-                            setIsPlaying(!isPlaying)
+                            handleButtonClick(e.currentTarget);
+                            setIsPlaying(!isPlaying);
                           }}
                           className="text-white hover:bg-white/20 w-12 h-12 rounded-full bg-theme-surface"
                         >
-                          {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-1" />}
+                          {isPlaying ? (
+                            <Pause className="w-6 h-6" />
+                          ) : (
+                            <Play className="w-6 h-6 ml-1" />
+                          )}
                         </Button>
                         <Button
                           variant="ghost"
                           size="icon"
                           onClick={(e) => {
-                            handleButtonClick(e.currentTarget)
-                            setCurrentLesson(Math.min(course.lessons.length - 1, currentLesson + 1))
+                            handleButtonClick(e.currentTarget);
+                            setCurrentLesson(
+                              Math.min(
+                                course.lessons.length - 1,
+                                currentLesson + 1
+                              )
+                            );
                           }}
                           disabled={currentLesson === course.lessons.length - 1}
                           className="text-white hover:bg-white/20 disabled:opacity-50"
@@ -321,13 +359,25 @@ const CourseLearning = () => {
                         </Button>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="text-white hover:bg-white/20"
+                        >
                           <Volume2 className="w-4 h-4" />
                         </Button>
-                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="text-white hover:bg-white/20"
+                        >
                           <Settings className="w-4 h-4" />
                         </Button>
-                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="text-white hover:bg-white/20"
+                        >
                           <Maximize className="w-4 h-4" />
                         </Button>
                         <div className="text-sm text-white">
@@ -351,19 +401,19 @@ const CourseLearning = () => {
                   <TabsList className="grid w-full grid-cols-3 bg-transparent">
                     <TabsTrigger
                       value="overview"
-                      className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 border-none data-[state=active]:to-blue-500 data-[state=active]:text-theme-text text-theme-text hover:text-theme-text transition-all duration-300"
+                      className={` data-[state=active]:bg-theme-primary rounded-xl border-none data-[state=active]:text-white text-theme-text hover:text-theme-text transition-all duration-300`}
                     >
                       Overview
                     </TabsTrigger>
                     <TabsTrigger
                       value="notes"
-                      className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 border-none data-[state=active]:to-blue-500 data-[state=active]:text-theme-text text-theme-text hover:text-theme-text transition-all duration-300"
+                      className=" border-none data-[state=active]:bg-theme-primary rounded-xl data-[state=active]:text-white text-theme-text hover:text-theme-text transition-all duration-300"
                     >
                       Notes
                     </TabsTrigger>
                     <TabsTrigger
                       value="resources"
-                      className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 border-none data-[state=active]:to-blue-500 data-[state=active]:text-theme-text text-theme-text hover:text-theme-text transition-all duration-300"
+                      className="  border-none data-[state=active]:bg-theme-primary rounded-xl data-[state=active]:text-white text-theme-text hover:text-theme-text transition-all duration-300"
                     >
                       Resources
                     </TabsTrigger>
@@ -372,17 +422,22 @@ const CourseLearning = () => {
 
                 <TabsContent value="overview">
                   <div
-                    className="backdrop-blur-xl bg-theme-surface border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 relative"
+                    className="backdrop-blur-xl bg-theme-surface border border-white/20 rounded-2xl p-6  transition-all duration-300 relative"
                     onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
-                    onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
+                    onMouseLeave={(e) =>
+                      handleCardHover(e.currentTarget, false)
+                    }
                   >
                     <div className="card-glow absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20 opacity-0 rounded-2xl" />
-                    <h3 className="text-xl font-bold text-theme-text mb-4">{course.lessons[currentLesson].title}</h3>
+                    <h3 className="text-xl font-bold text-theme-text mb-4">
+                      {course.lessons[currentLesson].title}
+                    </h3>
                     <div className="space-y-4 relative z-10">
                       <p className="text-theme-text leading-relaxed">
-                        In this lesson, we'll explore the fundamental concepts of derivatives and how they apply to
-                        real-world problems. We'll start with the basic definition and work our way through practical
-                        examples.
+                        In this lesson, we'll explore the fundamental concepts
+                        of derivatives and how they apply to real-world
+                        problems. We'll start with the basic definition and work
+                        our way through practical examples.
                       </p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="backdrop-blur-sm bg-theme-surface border border-white/10 rounded-xl p-4">
@@ -432,19 +487,23 @@ const CourseLearning = () => {
 
                 <TabsContent value="notes">
                   <div
-                    className="backdrop-blur-xl bg-theme-surface border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 relative"
+                    className="backdrop-blur-xl bg-theme-surface border border-white/20 rounded-2xl p-6 transition-all duration-300 relative"
                     onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
-                    onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
+                    onMouseLeave={(e) =>
+                      handleCardHover(e.currentTarget, false)
+                    }
                   >
                     <div className="card-glow absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20 opacity-0 rounded-2xl" />
-                    <h3 className="text-xl font-bold text-theme-text mb-4">Your Notes</h3>
+                    <h3 className="text-xl font-bold text-theme-text mb-4">
+                      Your Notes
+                    </h3>
                     <div className="space-y-4 relative z-10">
                       <textarea
                         className="w-full h-32 p-4 backdrop-blur-sm bg-theme-surface border border-white/20 rounded-xl text-theme-text placeholder:text-theme-text resize-none focus:outline-none focus:ring-2 focus:ring-purple-500/50"
                         placeholder="Take notes during the lesson..."
                       />
                       <Button
-                        className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-theme-text border-0"
+                        className="bg-theme-primary text-white border-0"
                         onClick={(e) => handleButtonClick(e.currentTarget)}
                       >
                         Save Notes
@@ -455,29 +514,41 @@ const CourseLearning = () => {
 
                 <TabsContent value="resources">
                   <div
-                    className="backdrop-blur-xl bg-theme-surface border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 relative"
+                    className="backdrop-blur-xl bg-theme-surface border border-white/20 rounded-2xl p-6  transition-all duration-300 relative"
                     onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
-                    onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
+                    onMouseLeave={(e) =>
+                      handleCardHover(e.currentTarget, false)
+                    }
                   >
                     <div className="card-glow absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20 opacity-0 rounded-2xl" />
-                    <h3 className="text-xl font-bold text-theme-text mb-4">Additional Resources</h3>
+                    <h3 className="text-xl font-bold text-theme-text mb-4">
+                      Additional Resources
+                    </h3>
                     <div className="space-y-3 relative z-10">
                       <div className="flex items-center space-x-3 p-4 backdrop-blur-sm bg-white/5 border border-white/10 rounded-xl hover:bg-theme-surface transition-colors cursor-pointer">
                         <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
-                          <FileText className="w-5 h-5 text-theme-text" />
+                          <FileText className="w-5 h-5 text-white" />
                         </div>
                         <div>
-                          <p className="font-medium text-theme-text">Derivative Formula Sheet</p>
-                          <p className="text-sm text-theme-text">Essential formulas and rules</p>
+                          <p className="font-medium text-theme-text">
+                            Derivative Formula Sheet
+                          </p>
+                          <p className="text-sm text-theme-text">
+                            Essential formulas and rules
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-3 p-4 backdrop-blur-sm bg-white/5 border border-white/10 rounded-xl hover:bg-theme-surface transition-colors cursor-pointer">
                         <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
-                          <BookOpen className="w-5 h-5 text-theme-text" />
+                          <BookOpen className="w-5 h-5 text-white" />
                         </div>
                         <div>
-                          <p className="font-medium text-theme-text">Practice Problems</p>
-                          <p className="text-sm text-theme-text">20 problems with solutions</p>
+                          <p className="font-medium text-theme-text">
+                            Practice Problems
+                          </p>
+                          <p className="text-sm text-theme-text">
+                            20 problems with solutions
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -491,12 +562,14 @@ const CourseLearning = () => {
           <div ref={sidebarRef} className="space-y-6">
             {/* Course Progress */}
             <div
-              className="backdrop-blur-xl bg-theme-surface border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 relative"
+              className="backdrop-blur-xl bg-theme-surface border border-white/20 rounded-2xl p-6 transition-all duration-300 relative"
               onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
               onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
             >
               <div className="card-glow absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20 opacity-0 rounded-2xl" />
-              <h3 className="text-lg font-bold text-theme-text mb-4 relative z-10">Course Progress</h3>
+              <h3 className="text-lg font-bold text-theme-text mb-4 relative z-10">
+                Course Progress
+              </h3>
               <div className="space-y-3 relative z-10">
                 {course.lessons.map((lesson, index) => (
                   <div
@@ -515,8 +588,12 @@ const CourseLearning = () => {
                       <Circle className="w-5 h-5 text-theme-text" />
                     )}
                     <div className="flex-1">
-                      <p className="font-medium text-theme-text text-sm">{lesson.title}</p>
-                      <p className="text-xs text-theme-text">{lesson.duration}</p>
+                      <p className="font-medium text-theme-text text-sm">
+                        {lesson.title}
+                      </p>
+                      <p className="text-xs text-theme-text">
+                        {lesson.duration}
+                      </p>
                     </div>
                     {index === currentLesson && (
                       <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full" />
@@ -528,15 +605,17 @@ const CourseLearning = () => {
 
             {/* Quick Actions */}
             <div
-              className="backdrop-blur-xl bg-theme-surface border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 relative"
+              className="backdrop-blur-xl bg-theme-surface border border-white/20 rounded-2xl p-6 transition-all duration-300 relative"
               onMouseEnter={(e) => handleCardHover(e.currentTarget, true)}
               onMouseLeave={(e) => handleCardHover(e.currentTarget, false)}
             >
               <div className="card-glow absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20 opacity-0 rounded-2xl" />
-              <h3 className="text-lg font-bold text-theme-text mb-4 relative z-10">Quick Actions</h3>
+              <h3 className="text-lg font-bold text-theme-text mb-4 relative z-10">
+                Quick Actions
+              </h3>
               <div className="space-y-3 relative z-10">
                 <Button
-                  className="w-full backdrop-blur-sm bg-theme-surface border border-white/20 text-theme-text hover:bg-white/20 hover:border-white/30 justify-start"
+                  className="w-full backdrop-blur-sm rounded-xl bg-theme-surface border border-white/20 text-theme-text hover:bg-white/20 hover:border-white/30 justify-start"
                   variant="outline"
                   onClick={(e) => handleButtonClick(e.currentTarget)}
                 >
@@ -544,7 +623,7 @@ const CourseLearning = () => {
                   Download Materials
                 </Button>
                 <Button
-                  className="w-full backdrop-blur-sm bg-theme-surface border border-white/20 text-theme-text hover:bg-white/20 hover:border-white/30 justify-start"
+                  className="w-full backdrop-blur-sm rounded-xl bg-theme-surface border border-white/20 text-theme-text hover:bg-white/20 hover:border-white/30 justify-start"
                   variant="outline"
                   onClick={(e) => handleButtonClick(e.currentTarget)}
                 >
@@ -552,7 +631,7 @@ const CourseLearning = () => {
                   Join Discussion
                 </Button>
                 <Button
-                  className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-theme-text border-0 justify-start"
+                  className="w-full text-white rounded-xl bg-theme-primary border-0 justify-start"
                   onClick={(e) => handleButtonClick(e.currentTarget)}
                 >
                   <Brain className="w-4 h-4 mr-2" />
@@ -564,7 +643,7 @@ const CourseLearning = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CourseLearning
+export default CourseLearning;

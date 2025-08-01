@@ -27,7 +27,7 @@ export default function ChatInterface() {
   const [selectedConversation, setSelectedConversation] = useState(1);
   const [newMessage, setNewMessage] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -136,7 +136,7 @@ export default function ChatInterface() {
           <Card className="h-full rounded-none lg:rounded-l-xl overflow-hidden bg-white/10 backdrop-blur-md ">
             <CardHeader className="pb-4  bg-theme-surface sticky">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-xl font-bold text-theme-text">
+                <CardTitle className="text-xl page-title-text font-bold text-theme-text">
                   Messages
                 </CardTitle>
                 <div className="flex items-center gap-2">

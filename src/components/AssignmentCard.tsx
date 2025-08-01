@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { gsap } from "gsap";
 import { CardContainer } from "./3DCard";
+import { useNavigate } from "react-router-dom";
 
 interface Assignment {
   id: number;
@@ -51,6 +52,7 @@ const AssignmentCard = ({
 }: AssignmentCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const uploadIconRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (cardRef.current) {
@@ -163,6 +165,7 @@ const AssignmentCard = ({
   const handleButtonClick = (buttonRef: HTMLButtonElement) => {
     if (!buttonRef) return;
 
+    navigate(`/test/1`);
     gsap.to(buttonRef, {
       scale: 0.95,
       duration: 0.1,
@@ -287,9 +290,9 @@ const AssignmentCard = ({
                       handleStartTest();
                     }}
                   >
-                    <Play className="w-4 h-4 mr-2 text-white "  />
-                    <span className="text-theme-text group-hover:text-white">Start {assignment.type === "exam" ? "Exam" : "Quiz"}</span>
-                    <ArrowRight className="w-4 h-4 ml-2 text-white " />
+                    <Play className="w-4 h-4 mr-2 button-content text-theme-text "  />
+                    <span className="text-theme-text button-content">Start {assignment.type === "exam" ? "Exam" : "Quiz"}</span>
+                    <ArrowRight className="w-4 h-4 ml-2 button-content " />
                   </Button>
                 )}
               {assignment.type === "assignment" &&
@@ -298,7 +301,7 @@ const AssignmentCard = ({
                     className="action-button button2 flex-1 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white border-0 shadow-lg relative overflow-hidden"
                     onClick={(e) => handleButtonClick(e.currentTarget)}
                   >
-                    <Upload className="w-4 h-4 mr-2 text-white " />
+                    <Upload className="w-4 h-4 mr-2 text-theme-text group-hover:text-white " />
                     <span className="text-theme-text group-hover:text-white">Submit Assignment</span>
                   </Button>
                 )}
@@ -308,7 +311,7 @@ const AssignmentCard = ({
                   className="w-full flex justify-center items-center gap-2 button2 bg-theme-primary hover:text-white py-3 rounded-lg hover:bg-opacity-90 transition-all duration-200 font-medium"
                   onClick={(e) => handleButtonClick(e.currentTarget)}
                 >
-                  <Eye className="w-4 h-4 mr-2 text-white " />
+                  <Eye className="w-4 h-4 mr-2 text-theme-text group-hover:text-white " />
                   <span className="text-theme-text group-hover:text-white">View Submission</span>
                 </Button>
               )}
@@ -317,7 +320,7 @@ const AssignmentCard = ({
                   <span className="transition-all ease-in-out duration-200 text-theme-text group-hover:text-white">
                     Continue
                   </span>
-                  <CirclePlay className="hidden continue-icon text-white " />
+                  <CirclePlay className="hidden continue-icon text-theme-text group-hover:text-white " />
                 </button>
               )}
             </div>

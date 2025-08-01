@@ -110,10 +110,10 @@ const CourseGrid: React.FC = () => {
                 </div>
 
                 <button className="continue-button button2 w-full flex justify-center items-center gap-2  py-3 rounded-lg transition-all duration-300 font-medium shadow-lg hover:shadow-xl relative overflow-hidden group/btn">
-                  <span className="transition-all ease-in-out text-theme-text group-hover:text-white duration-3000">
+                  <span className="transition-all button-content ease-in-out text-theme-text group-hover:text-theme-text duration-3000">
                     Continue
                   </span>
-                  <CirclePlay className="w-5 h-5 hidden continue-icon text-white transition-transform duration-300" />
+                  <CirclePlay className="w-5 h-5 hidden button-content continue-icon text-white transition-transform duration-300" />
                 </button>
               </div>
             </CardBody>
